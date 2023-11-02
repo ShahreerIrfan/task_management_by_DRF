@@ -5,14 +5,17 @@ def home(request):
 from django.views.generic import CreateView, UpdateView, DeleteView, ListView, DetailView
 from .models import Task
 from django.urls import reverse_lazy
-
+from .forms import TaskUpdateForm
 class TaskCreateView(CreateView):
     model = Task
     fields = ['title', 'description', 'due_date', 'priority', 'photos']
 
 class TaskUpdateView(UpdateView):
     model = Task
-    fields = ['title', 'description', 'due_date', 'priority', 'photos']
+    form_class = TaskUpdateForm
+    template_name = 'main_app/task_update.html'
+    success_url = reverse_lazy('task-list')
+
 
 class TaskDeleteView(DeleteView):
     model = Task

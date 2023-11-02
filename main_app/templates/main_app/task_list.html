@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block body %}
+
+  <h1>Task List</h1>
+  <ul>
+    {% for task in object_list %}
+      <li>
+        <a href="{% url 'task-detail' task.pk %}">{{ task.title }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'task-create' %}">Create New Task</a>
+</div>
+
+
+{% endblock %}

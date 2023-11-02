@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block body %}
-  <h3>Task Detail</h3>
-  <h2>{{ object.title }}</h2>
-  <p>Description: {{ object.description }}</p>
-  <p>Due Date: {{ object.due_date }}</p>
-  <p>Priority: {{ object.priority }}</p>
-  <p>Completion Status: {% if object.is_complete %}Complete{% else %}Incomplete{% endif %}</p>
-  <a class="btn btn-warning" href="{% url 'task-update' object.pk %}">Edit Task</a>
-  <a class="btn btn-danger" href="{% url 'task-delete' object.pk %}">Delete Task</a>
-  <a href="{% url 'task-list' %}">Back to Task List</a>
+<h1>Task Detail</h1>
+<h2>{{ object.title }}</h2>
+<p>Description: {{ object.description }}</p>
+<p>Due Date: {{ object.due_date }}</p>
+<p>Priority: {{ object.priority }}</p>
+<p>Completion Status: {% if object.is_complete %}Complete{% else %}Incomplete{% endif %}</p>
+
+<form method="post" action="{% url 'task-delete' object.pk %}" style="display: inline-flex;">
+    {% csrf_token %}
+    <button class="btn btn-danger" type="submit">Delete Task</button>
+</form>
+
+<a href="{% url 'task-update' object.pk %}" class="btn btn-warning">Edit Task</a>
+<a class="btn btn-success" href="{% url 'task-list' %}">Back to Task List</a>
+
 {% endblock %}

@@ -1,9 +1,17 @@
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
+<style>
+    .form-area{
+        width: 40%;
+    }
 
+</style>
 {% block body %}
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update Task</button>
-</form>
+<div class="form-area" style="width: 40%;margin: 0 auto;">
+    <form method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit">Update Task</button>
+    </form>
+</div>
 {% endblock %}

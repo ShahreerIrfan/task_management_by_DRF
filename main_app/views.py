@@ -11,10 +11,15 @@ class TaskCreateView(CreateView):
     model = Task
     form_class = TaskCreateForm
     template_name = 'main_app/task_create.html'  # Create this template
-    success_url = reverse_lazy('task-list')  # Redirect after succ
-# class TaskCreateView(CreateView):
-#     model = Task
-#     fields = ['title', 'description', 'due_date', 'priority', 'photos']
+    success_url = reverse_lazy('task-list')
+    def form_valid(self, form):
+        # Set the owner to the currently logged-in user
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+
+
+def home(request):
+    return render(request,'main_app/index.html')
 
 class TaskUpdateView(UpdateView):
     model = Task

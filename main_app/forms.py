@@ -9,14 +9,11 @@ class TaskUpdateForm(forms.ModelForm):
         fields = ['title', 'description', 'due_date', 'priority', 'photos', 'is_complete']
 
 class TaskCreateForm(forms.ModelForm):
+    photos = forms.ImageField(required=False,)
     class Meta:
         model = Task
         fields = ['title', 'description', 'due_date', 'priority','photos']
 
-
-
-from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class RegistrationForm(UserCreationForm):
     class Meta:

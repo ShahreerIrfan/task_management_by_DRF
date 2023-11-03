@@ -13,4 +13,7 @@ urlpatterns = [
     path('tasks/create/', views.TaskCreateView.as_view(), name='task-create'),
     path('tasks/update/<int:pk>/', views.TaskUpdateView.as_view(), name='task-update'),
     path('tasks/delete/<int:pk>/', views.TaskDeleteView.as_view(), name='task-delete'),
+    path('register/', views.register, name='register'),
+    path('login/', views.user_login, name='login'),
+    path('logout/', views.user_logout, name='logout'),
 ]+ static(settings.MEDIA_URL , document_root = settings.MEDIA_ROOT)

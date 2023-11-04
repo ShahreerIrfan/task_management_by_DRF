@@ -1,5 +1,8 @@
 from django.shortcuts import render
-from .forms import TaskCreateForm,TaskUpdateForm
+from .forms import TaskCreateForm,TaskUpdateForm,CustomPasswordChangeForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.decorators import login_required
+
 def home(request):
     return render(request,'main_app/index.html')
 
@@ -69,5 +72,10 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('login')  # Redirect to the login page after logging out
+    return redirect('login')
+
+class CustomPasswordChangeView(PasswordChangeView):
+    form_class = CustomPasswordChangeForm
+    template_name = 'main_app/password_change.html'
+
 
